@@ -1,0 +1,18 @@
+{
+  "name": "heroku-sf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "express": "~4.17.1",
+    "express-handlebars": "^5.1.0",
+    "hbs": "~4.1.1",
+    "pg": "~8.3.3"
+  }
+}
