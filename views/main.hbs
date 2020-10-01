@@ -1,9 +1,19 @@
 <div class="row">
     <div class="col">
         <div class="list-group">
-            {{#each users}}
-                <a class="list-group-item list-group-item-action" href="/user/{{ this.id }}">{{this.email}}</a>
-            {{/each}}
-        </div>
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    User list
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{#each users}}
+                    <li class="list-group-item">
+                        <a class="list-group-item list-group-item-action" href="/user/{{ this.id }}">{{this.email}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
     </div>
 </div> 

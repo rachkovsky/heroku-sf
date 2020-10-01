@@ -8,7 +8,7 @@ const { Client } = require('pg');
 const expressHbs = require('express-handlebars')
 const hbs = require('hbs')
 
-const connectionString = 'postgres://postgres:0057@localhost:5432/todo_app';
+const connectionString = 'postgres://postgres:0057@localhost:5432/Todo_app';
 const client = new Client(connectionString);
 
 app.engine(
@@ -21,7 +21,7 @@ app.engine(
   )
 
 app.set("view engine", "hbs");
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 client.connect((err, res) => {
     //
@@ -46,20 +46,19 @@ app.get('/', (req, res) => {
 
 app.get('/user/:id', async (req, res) => {
 
-    const lists = await client.query('SELECT * from list WHERE user_id = $1', [req.params.id]);
-    console.log(lists);
-    // const todos =  await client.query('SELECT * from list_item WHERE user_id = $1', [req.params.id]);
+    try {
+        const lists = await client.query('SELECT * from list WHERE user_id = $1', [req.params.id]);
 
-    client.query('SELECT * from list WHERE user_id = $1', [req.params.id], (err, result) => {
-        if (err) {
-            console.log(err);
-            res.render('error');
-            return;
+        if (lists.rows.length > 0) {
+            const todos = await client.query('SELECT * from list_item WHERE list_id = $1', [lists.rows[0].id]);
+            res.render('user', { todos:  todos.rows })
+        } else {
+            res.render('user', { not_found: true })
         }
-        res.render('user', { users: result });
-        console.log(result);
-
-    });
+    } catch(err) {
+        console.log(err);
+        res.render('error');
+    }
 });
 
 app.listen(port, () => {
