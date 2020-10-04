@@ -8,7 +8,7 @@ const { Client } = require('pg');
 const expressHbs = require('express-handlebars')
 const hbs = require('hbs')
 
-const connectionString = 'postgres://postgres:0057@localhost:5432/todo_app';
+const connectionString = process.env.DATABASE_URL || 'postgres://postgres:0057@localhost:5432/todo_app';
 const client = new Client(connectionString);
 
 app.engine(
