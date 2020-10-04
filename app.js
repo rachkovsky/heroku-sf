@@ -36,7 +36,7 @@ client.query('SELECT * from todouser', (err, res) => {
 });
 
 app.get('/', (req, res) => {
-    client.query('SELECT * from todoser', (err, result) => {
+    client.query('SELECT * from todouser', (err, result) => {
         if (err) {
             res.render('error');
         }
