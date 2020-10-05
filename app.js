@@ -24,16 +24,18 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, 'public')));
 
 client.connect((err, res) => {
-    //
-});
-
-client.query('SELECT * from todouser', (err, res) => {
-    if (err) {
-        console.log(err.stack)
-    } else {
-        console.log(res.rows)
+    if (!err) {
+        client.query('SELECT * from todouser', (err, res) => {
+            if (err) {
+                console.log(err.stack)
+            } else {
+                console.log(res.rows)
+            }
+        });
     }
 });
+
+
 
 app.get('/', (req, res) => {
     client.query('SELECT * from todouser', (err, result) => {
@@ -47,10 +49,10 @@ app.get('/', (req, res) => {
 app.get('/user/:id', async (req, res) => {
 
     try {
-        const lists = await client.query('SELECT * from todouser WHERE id = $1', [req.params.id]);
+        const users = await client.query('SELECT * from todouser WHERE id = $1', [req.params.id]);
 
-        if (lists.rows.length > 0) {
-            const todos = await client.query('SELECT * from todolist WHERE user_id = $1', [lists.rows[0].id]);
+        if (users.rows.length > 0) {
+            const todos = await client.query('SELECT * from todolist WHERE user_id = $1', [users.rows[0].id]);
             res.render('user', { todos:  todos.rows })
         } else {
             res.render('user', { not_found: true })
