@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
             console.log(err.stack);
             res.render('error', {error: err.stack});
         } else {
-            console.log(result);
+            console.log(result.rows);
             res.render('herokuConnect', { records: result.rows });
         }
     });
