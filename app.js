@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ app.engine(
   )
 
 app.set("view engine", "hbs");
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 client.connect((err, res) => {
@@ -86,6 +88,7 @@ app.get('/oauth/callback', function (req, res) {
         }
         console.log('USER INFO', userInfo);
         console.log('CONN ', conn);
+        res.cookie('accessToken', conn.accessToken, { expires: 900000, httpOnly: true });
         res.redirect('/');
 
     });
