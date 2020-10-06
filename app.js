@@ -58,7 +58,6 @@ app.get('/', (req, res) => {
 
 app.get('/restapi', (req, res) => {
     if (req.cookies.instanceUrl)  {
-        console.log('---- ', conn);
         res.render('restApi', {connection: req.cookies});
     } else {
         res.render('restApi', {});
