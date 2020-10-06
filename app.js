@@ -99,8 +99,8 @@ app.get('/oauth/callback', function (req, res) {
         const expiryDate = new Date(Number(new Date()) + 900000);
         res.cookie('accessToken', conn.accessToken, { expires: expiryDate, httpOnly: true });
         res.cookie('instanceUrl', conn.instanceUrl, { expires: expiryDate, httpOnly: true });
-        res.cookie('userId', conn.accessToken, { expires: expiryDate, httpOnly: true });
-        res.cookie('orgId', conn.instanceUrl, { expires: expiryDate, httpOnly: true });
+        res.cookie('userId', userInfo.id, { expires: expiryDate, httpOnly: true });
+        res.cookie('orgId', userInfo.organizationId, { expires: expiryDate, httpOnly: true });
         res.redirect('/restapi');
 
     });
