@@ -63,6 +63,8 @@ app.get('/restapi', (req, res) => {
             accessToken : req.cookies.accessToken
         });
 
+        console.log('---- ', conn);
+
         res.render('restApi', {connection: conn});
     }
 
