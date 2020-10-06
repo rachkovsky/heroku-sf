@@ -88,7 +88,8 @@ app.get('/oauth/callback', function (req, res) {
         }
         console.log('USER INFO', userInfo);
         console.log('CONN ', conn);
-        res.cookie('accessToken', conn.accessToken, { expires: 900000, httpOnly: true });
+        const expiryDate = new Date(Number(new Date()) + 900000);
+        res.cookie('accessToken', conn.accessToken, { expires: expiryDate, httpOnly: true });
         res.redirect('/');
 
     });
