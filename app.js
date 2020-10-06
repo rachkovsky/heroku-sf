@@ -5,11 +5,19 @@ const app = express();
 const port = process.env.PORT || 3000;
 const { Client } = require('pg');
 
-const expressHbs = require('express-handlebars')
-const hbs = require('hbs')
+const expressHbs = require('express-handlebars');
+const hbs = require('hbs');
+const jsforce = require('jsforce');
 
 const connectionString = process.env.DATABASE_URL || 'postgres://postgres:0057@localhost:5432/todo_app';
 const client = new Client(connectionString);
+
+const oauth2 = new jsforce.OAuth2({
+    loginUrl: 'https://login.salesforce.com',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: '',
+});
 
 app.engine(
     'hbs',
@@ -62,6 +70,29 @@ app.get('/user/:id', async (req, res) => {
         res.render('error');
     }
 });
+
+app.get('/oauth', function (request, response) {
+    oauth2.redirectUri = `https://${request.get('host')}/oauth/callback`
+    response.redirect(oauth2.getAuthorizationUrl({}));
+});
+
+app.get('/oauth/callback', function (req, res) {
+    const conn = new jsforce.Connection({ oauth2: oauth2 });
+
+    conn.authorize(req.query.code, function (err, userInfo) {
+        if (err) {
+            res.render('error');
+            return;
+        }
+        console.log('USER INFO', userInfo);
+        console.log('CONN ', conn);
+        res.redirect('/');
+
+    });
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`App listening at ${port}`)
