@@ -57,15 +57,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/restapi', (req, res) => {
-    if (req.cookies.instanceUrl && req.cookies.accessToken)  {
-        let conn = new jsforce.Connection({
-            instanceUrl : req.cookies.instanceUrl,
-            accessToken : req.cookies.accessToken
-        });
-
+    if (req.cookies.instanceUrl)  {
         console.log('---- ', conn);
-
-        res.render('restApi', {connection: conn});
+        res.render('restApi', {connection: req.cookies});
     } else {
         res.render('restApi', {});
     }
@@ -106,7 +100,9 @@ app.get('/oauth/callback', function (req, res) {
         const expiryDate = new Date(Number(new Date()) + 900000);
         res.cookie('accessToken', conn.accessToken, { expires: expiryDate, httpOnly: true });
         res.cookie('instanceUrl', conn.instanceUrl, { expires: expiryDate, httpOnly: true });
-        res.redirect('/');
+        res.cookie('userId', conn.accessToken, { expires: expiryDate, httpOnly: true });
+        res.cookie('orgId', conn.instanceUrl, { expires: expiryDate, httpOnly: true });
+        res.redirect('/restapi');
 
     });
 });
