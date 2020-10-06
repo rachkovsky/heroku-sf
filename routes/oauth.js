@@ -29,7 +29,7 @@ router.get('/callback', function (request, response) {
         response.cookie('accessToken', conn.accessToken, { expires: expiryDate, httpOnly: true });
         response.cookie('instanceUrl', conn.instanceUrl, { expires: expiryDate, httpOnly: true });
         response.cookie('userId', userInfo.id, { expires: expiryDate, httpOnly: true });
-        responses.cookie('orgId', userInfo.organizationId, { expires: expiryDate, httpOnly: true });
+        response.cookie('orgId', userInfo.organizationId, { expires: expiryDate, httpOnly: true });
         response.redirect('/sfrestapi');
 
     });
