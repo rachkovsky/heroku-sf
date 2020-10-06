@@ -66,10 +66,9 @@ app.get('/restapi', (req, res) => {
         console.log('---- ', conn);
 
         res.render('restApi', {connection: conn});
+    } else {
+        res.render('restApi', {});
     }
-
-    res.render('restApi', {});
-    
 });
 
 app.get('/user/:id', async (req, res) => {
