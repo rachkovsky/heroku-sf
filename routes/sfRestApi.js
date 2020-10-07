@@ -18,7 +18,7 @@ router.get('/accounts', (req, res) => {
     console.log('----------- ', req.cookies.instanceUrl, req.cookies.accessToken  )
 
     conn.query("SELECT Id, Name FROM Contact", function(error, result) {
-        if (err) {
+        if (error) {
             console.log('----------- 2 ', err);
             res.status(400).json({ error: error.stack});
             return console.error(err); 
