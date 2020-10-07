@@ -18,7 +18,6 @@ router.get('/accounts', (req, res) => {
 
     conn.query("SELECT Id, Name FROM Account", function(error, result) {
         if (error) {
-            console.log('----------- 2 ', err);
             res.status(400).json({ error: error.stack});
             return console.error(error); 
         }

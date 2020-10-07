@@ -29,14 +29,19 @@
     const button = document.getElementById('accounts');
 
     button.addEventListener('click', function(e) {
-        fetch('/sfrestapi/accounts').then(res => res.json()).then((res) => {
+        fetch('/sfrestapi/accounts')
+        .then(res => res.json())
+        .then((res) => {
             console.log(res);
             let list = '';
             res.response.forEach(function (record) {
-                list += '<li>' + record.Name + '</li>';
+                list += '<li class="list-group-item">' + record.Name + '</li>';
             });
-            list = '<ul>' + list + '</ul>';
+            list = '<ul class="list-group">' + list + '</ul>';
             document.getElementById('result').innerHTML = list;
+        })
+        .catch(function(error) {
+            console.log(error);
         });
     })
 
