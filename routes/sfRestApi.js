@@ -21,10 +21,10 @@ router.get('/accounts', (req, res) => {
             res.status(400).json({ error: error.stack});
             return console.error(err); 
         }
-
-        res.status(200).send({result: result});
         console.log("total : " + result.totalSize);
         console.log("fetched : " + result.records.length);
+        res.status(200).send({result: result});
+
       });
 })
 
