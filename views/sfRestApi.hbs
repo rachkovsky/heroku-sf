@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-5">
     <div class="col">
         {{#if connection }}
             <p>You are logged in</p> 
@@ -20,15 +20,24 @@
     <div class="col">
         <button id="accounts" class="btn btn-secondary">Get Accounts</button>
     </div>
+    <div id="result" class="col"></div>
 </div>
 
 
 <script>
 
-    var button = document.getElementById('accounts');
+    const button = document.getElementById('accounts');
 
     button.addEventListener('click', function(e) {
-        fetch('/sfrestapi/accounts').then(res => res.json()).then((res) => console.log(res));
+        fetch('/sfrestapi/accounts').then(res => res.json()).then((res) => {
+            console.log(res);
+            let list = '';
+            res.forEach(function (record) {
+                list += '<li>' + record.Name + '</li>';
+            });
+            list = '<ul>' + list + '</ul>';
+            document.getElementById('result').innerHTML = html;
+        });
     })
 
 </script>

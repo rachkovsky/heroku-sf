@@ -17,15 +17,13 @@ router.get('/accounts', (req, res) => {
     });
     console.log('----------- ', req.cookies.instanceUrl, req.cookies.accessToken  )
 
-    conn.query("SELECT Id, Name FROM Contact", function(error, result) {
+    conn.query("SELECT Id, Name FROM Account", function(error, result) {
         if (error) {
             console.log('----------- 2 ', err);
             res.status(400).json({ error: error.stack});
-            return console.error(err); 
+            return console.error(error); 
         }
-        console.log("total : " + result.totalSize);
-        console.log("fetched : " + result.records.length);
-        res.status(200).send({result: result});
+        res.status(200).send(result.records);
       });
 })
 
