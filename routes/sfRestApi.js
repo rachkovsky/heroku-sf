@@ -15,7 +15,7 @@ router.get('/accounts', (req, res) => {
         instanceUrl : req.cookies.instanceUrl || '',
         accessToken : req.cookies.accessToken || '',
     });
-    console.log('----------- ')
+    console.log('----------- ', req.cookies.instanceUrl, req.cookies.accessToken  )
 
     conn.query("SELECT Id, Name FROM Account", function(error, result) {
         if (err) {
