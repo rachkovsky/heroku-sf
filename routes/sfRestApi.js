@@ -11,13 +11,13 @@ router.get('/', (req, res) => {
 
 router.get('/accounts', (req, res) => {
 
-    const conn = new jsforce.Connection({
+    let conn = new jsforce.Connection({
         instanceUrl : req.cookies.instanceUrl,
         accessToken : req.cookies.accessToken,
     });
     console.log('----------- ', req.cookies.instanceUrl, req.cookies.accessToken  )
 
-    conn.query("SELECT Id, Name FROM Account", function(error, result) {
+    conn.query("SELECT Id, Name FROM Contact", function(error, result) {
         if (err) {
             console.log('----------- 2 ', err);
             res.status(400).json({ error: error.stack});
