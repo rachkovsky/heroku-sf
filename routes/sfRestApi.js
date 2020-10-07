@@ -18,11 +18,11 @@ router.get('/accounts', (req, res) => {
 
     conn.query("SELECT Id, Name FROM Account", function(error, result) {
         if (err) {
-            res.render('error', { error: error.stack})
+            res.status(400).json({ error: error.stack});
             return console.error(err); 
         }
 
-        res.send(result);
+        res.status(200).send({result: result});
         console.log("total : " + result.totalSize);
         console.log("fetched : " + result.records.length);
       });

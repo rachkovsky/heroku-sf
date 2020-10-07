@@ -28,7 +28,7 @@
     var button = document.getElementById('accounts');
 
     button.addEventListener('click', function(e) {
-        fetch('/sfrestapi/accounts').then(res => console.log(res.json()));
+        fetch('/sfrestapi/accounts').then(res => res.json()).then((res) => console.log(res));
     })
 
 </script>
