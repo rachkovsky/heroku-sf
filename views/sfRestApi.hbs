@@ -14,4 +14,21 @@
             <p>Organization id: {{ connection.orgId }}</p>
         {{/if}}
     </div>
-</div> 
+</div>
+
+<div class="row">
+    <div class="col">
+        <button id="accounts" class="btn btn secondary">Get Accounts</button>
+    </div>
+</div>
+
+
+<script>
+
+    var button = document.getElementById('accounts');
+
+    button.addEventListener('click', function(e) {
+        fetch('/sfrestapi/accounts').then(res => console.log(res.json()));
+    })
+
+</script>

@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
+
 const express = require('express');
 const path = require('path');
 const expressHbs = require('express-handlebars');
@@ -7,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const pgClient = require('./db');
+
 pgClient.connect();
 
 app.engine(
