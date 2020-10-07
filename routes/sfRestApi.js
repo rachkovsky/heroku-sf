@@ -19,8 +19,8 @@ router.get('/accounts', (req, res) => {
 
     conn.query("SELECT Id, Name FROM Account", function(error, result) {
         if (err) {
-            res.status(400).json({ error: error.stack});
             console.log('----------- 2 ', err);
+            res.status(400).json({ error: error.stack});
             return console.error(err); 
         }
         console.log("total : " + result.totalSize);
