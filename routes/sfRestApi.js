@@ -12,8 +12,8 @@ router.get('/', (req, res) => {
 router.get('/accounts', (req, res) => {
 
     const conn = new jsforce.Connection({
-        instanceUrl : req.cookies.instanceUrl || '',
-        accessToken : req.cookies.accessToken || '',
+        instanceUrl : req.cookies.instanceUrl,
+        accessToken : req.cookies.accessToken,
     });
     console.log('----------- ', req.cookies.instanceUrl, req.cookies.accessToken  )
 
