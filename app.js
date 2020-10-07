@@ -26,7 +26,7 @@ app.engine(
 app.set("view engine", "hbs");
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/loaderio-5bbb935b66b760e9322e450d144e3569', express.static(path.join(__dirname, 'loaderio-5bbb935b66b760e9322e450d144e3569.txt')));
+app.use('/loaderio-5bbb935b66b760e9322e450d144e3569.txt', express.static(path.join(__dirname, 'loaderio-5bbb935b66b760e9322e450d144e3569.txt')));
 
 app.use('/herokuconnect', require('./routes/herokuConnect'));
 app.use('/oauth',         require('./routes/oauth'));
