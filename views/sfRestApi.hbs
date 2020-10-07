@@ -31,16 +31,15 @@
     button.addEventListener('click', function(e) {
         fetch('/sfrestapi/accounts')
         .then(res => {
-            console.log('-------- ', res);
-            res.json()
+            return res.json();
         })
         .then((res) => {
-            console.log(res);
+            console.log(res)
             let list = '';
             res.response.forEach(function (record) {
-                list += '<li class="list-group-item">' + record.Name + '</li>';
+                list += '<li>' + record.Name + '</li>';
             });
-            list = '<ul class="list-group">' + list + '</ul>';
+            list = '<ul>' + list + '</ul>';
             document.getElementById('result').innerHTML = list;
         })
         .catch(function(error) {
