@@ -41,6 +41,7 @@
             document.getElementById('result').innerHTML = list;
         })
         .catch(function(error) {
+            document.getElementById('result').innerHTML = error.error;
             console.log(error);
         });
     })
