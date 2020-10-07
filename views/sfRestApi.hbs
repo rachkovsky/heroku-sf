@@ -32,7 +32,7 @@
         fetch('/sfrestapi/accounts').then(res => res.json()).then((res) => {
             console.log(res);
             let list = '';
-            res.forEach(function (record) {
+            res.response.forEach(function (record) {
                 list += '<li>' + record.Name + '</li>';
             });
             list = '<ul>' + list + '</ul>';
