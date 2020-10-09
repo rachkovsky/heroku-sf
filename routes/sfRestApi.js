@@ -16,7 +16,7 @@ router.get('/accounts', (req, res) => {
         accessToken : req.cookies.accessToken,
     });
 
-    conn.query("SELECT Id, Name FROM Account", function(error, result) {
+    conn.query("SELECT Id, Name, Phone, Description FROM Account", function(error, result) {
         if (error) {
             res.status(401).send({ error: error.stack});
             return console.error(error); 
