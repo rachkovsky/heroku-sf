@@ -20,8 +20,9 @@
     <div class="col">
         <button id="accounts" class="btn btn-secondary">Get Accounts</button>
     </div>
-    <div id="result" class="col"></div>
 </div>
+
+<div class="row" id="result"></div>
 
 
 <script>
@@ -35,12 +36,19 @@
         })
         .then((res) => {
             console.log(res)
-            let list = '';
+            let item = '';
             res.response.forEach(function (record) {
-                list += '<li>' + record.Name + '</li>';
+                item += '<div class="card col col-3">' + 
+                            '<div class="card-body">'+
+                                '<h5 class="card-title">Card title</h5>'+
+                                    record.Name + 
+                                '</h5>'+
+                                '<h6 class="card-subtitle mb-2 text-muted">' + record.Phone + '</h6>'+
+                                '<p class="card-text">'+ record.Description +'</p>'+
+                            '</div>' +    
+                        '</div>';
             });
-            list = '<ul>' + list + '</ul>';
-            document.getElementById('result').innerHTML = list;
+            document.getElementById('result').innerHTML = item;
         })
         .catch(function(error) {
             console.log(error);
