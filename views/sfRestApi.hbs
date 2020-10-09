@@ -40,10 +40,8 @@
             res.response.forEach(function (record) {
                 item += '<div class="card col col-3">' + 
                             '<div class="card-body">'+
-                                '<h5 class="card-title">Card title</h5>'+
-                                    record.Name + 
-                                '</h5>'+
-                                '<h6 class="card-subtitle mb-2 text-muted">' + record.Phone + '</h6>'+
+                                '<h5 class="card-title">'+record.Name+'</h5>'+
+                                '<h6 class="card-subtitle mb-2 text-muted">'+record.Phone+'</h6>'+
                                 '<p class="card-text">'+ record.Description +'</p>'+
                             '</div>' +    
                         '</div>';
