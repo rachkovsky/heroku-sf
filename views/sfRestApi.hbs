@@ -1,7 +1,7 @@
 <div class="row mb-5">
     <div class="col">
         {{#if connection }}
-            <p>You are logged in</p> 
+            <p>You are authorized through Oauth2</p> 
         {{else}}
             <a class="btn btn-primary" href="/oauth">Oauth login</a>
         {{/if}}
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-5">
     <div class="col">
         <button id="accounts" class="btn btn-secondary">Get Accounts</button>
     </div>
@@ -38,7 +38,7 @@
             console.log(res)
             let item = '';
             res.response.forEach(function (record) {
-                item += '<div class="card col col-3">' + 
+                item += '<div class="card col col-3 mb-3">' + 
                             '<div class="card-body">'+
                                 '<h5 class="card-title">'+record.Name+'</h5>'+
                                 '<h6 class="card-subtitle mb-2 text-muted">'+record.Phone+'</h6>'+
