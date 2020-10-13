@@ -31,16 +31,17 @@
     const button = document.getElementById('accounts');
 
     button.addEventListener('click', function(e) {
+        let item = '';
         fetch('/sfrestapi/accounts')
         .then(res => {
             if (!res.ok) {
+                console.log(res);
                 throw Error(res.statusText);
             } 
             return res.json();
         })
         .then((res) => {
             console.log(res)
-            let item = '';
             res.response.forEach(function (record) {
                 item += '<div class="card col col-3 mb-3">' + 
                             '<div class="card-body">'+
@@ -53,7 +54,10 @@
             document.getElementById('result').innerHTML = item;
         })
         .catch(function(error) {
+            item += '<div class="alert alert-danger">' + error + '</div>';
+            document.getElementById('result').innerHTML = item;
             console.log(error);
+
         });
     })
 
