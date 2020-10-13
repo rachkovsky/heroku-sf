@@ -33,6 +33,9 @@
     button.addEventListener('click', function(e) {
         fetch('/sfrestapi/accounts')
         .then(res => {
+            if (!res.ok) {
+                throw Error(res.statusText);
+            } 
             return res.json();
         })
         .then((res) => {
