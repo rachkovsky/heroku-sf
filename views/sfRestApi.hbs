@@ -54,7 +54,7 @@
             document.getElementById('result').innerHTML = item;
         })
         .catch(function(error) {
-            item += '<div class="alert alert-danger">' + error + '</div>';
+            item += '<div class="col alert alert-danger">' + error + '</div>';
             document.getElementById('result').innerHTML = item;
             console.log(error);
 
