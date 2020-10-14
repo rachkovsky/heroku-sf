@@ -6,7 +6,7 @@ router.get('/users', (req, res) => {
         if (err) {
             res.render('error');
         }
-        res.render('sfconnect', { users: result.rows || [] });
+        res.render('sfconnect', { users: result.rows ?  result.rows : [] });
     });
 });
 
