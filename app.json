@@ -1,29 +1,37 @@
 {
-    "name": "Node.js app",
-    "description": "Awesome node.js app",
-    "keywords": [],
-    "success_url": "/",
-    "scripts": {},
-    "env": {
-      "CLIENT_ID": {
-        "description": "Salesforce client_id",
-        "value": "5"
-      }
+  "scripts": {},
+  "env": {
+    "CLIENT_ID": {
+      "required": true
     },
-    "formation": {
-      "web": {
-        "quantity": 1,
-        "size": "hobby"
-      },
-      "worker": {
-        "quantity": 1,
-        "size": "hobby"
-      }
+    "CLIENT_SECRET": {
+      "required": true
     },
-    "addons": ["heroku-postgresql:hobby-dev", "heroku-connect:demo-edition"],
-    "buildpacks": [
-      {
-        "url": "https://github.com/heroku/heroku-buildpack-nodejs"
-      }
-    ]
-  }
+    "LOGDNA_KEY": {
+      "required": true
+    },
+    "REDIS_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    },
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "herokuconnect",
+    "logdna",
+    "heroku-postgresql",
+    "heroku-redis"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-18"
+}
