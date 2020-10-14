@@ -5,12 +5,11 @@ router.get('/', (req, res) => {
 
     client.query('SELECT * from salesforce.account', (err, result) => {
         if (err) {
-            console.log(err.stack);
             res.render('herokuConnect', {error: err.stack});
-        } else {
-            console.log('Heroku connect postgres: ', result.rows);
-            res.render('herokuConnect', { records: result.rows });
-        }
+            return console.error(err);
+        } 
+        console.log('Heroku connect postgres: ', result.rows);
+        res.render('herokuConnect', { records: result && result.rows ? result.rows : [] });
     });
 })
 
