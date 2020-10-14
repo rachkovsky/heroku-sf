@@ -19,6 +19,7 @@ function start() {
                 console.log(err);
                 done();
             }
+            console.log('Postgres result: ', result)
             done();
         });
     });
