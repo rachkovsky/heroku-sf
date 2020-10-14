@@ -13,8 +13,8 @@ function start() {
     let workQueue = new Queue('work', REDIS_URL);
 
     workQueue.process(maxJobsPerWorker, function (job, done) {
-        console.log('job ------- ', job.data)
-        client.query('INSERT INTO cases (case_id, status) VALUES ($1, $2)', [job.data.Id, job.data.Status], (err, result) => {
+        console.log('job ------- ', job.data);
+        pgClient.query('INSERT INTO cases (case_id, status) VALUES ($1, $2)', [job.data.Id, job.data.Status], (err, result) => {
             if (err) {
                 console.log(err);
                 done();
