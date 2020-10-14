@@ -6,7 +6,7 @@ router.get('/users', (req, res) => {
         if (err) {
             res.render('error');
         }
-        res.render('main', { users: result.rows });
+        res.render('sfconnect', { users: result.rows });
     });
 });
 
@@ -17,9 +17,9 @@ router.get('/users/:id', async (req, res) => {
 
         if (users.rows.length > 0) {
             const todos = await client.query('SELECT * from todolist WHERE user_id = $1', [users.rows[0].id]);
-            res.render('user', { todos:  todos.rows })
+            res.render('sfconnect-user', { todos:  todos.rows })
         } else {
-            res.render('user', { not_found: true })
+            res.render('sfconnect-user', { not_found: true })
         }
     } catch(err) {
         console.log(err);

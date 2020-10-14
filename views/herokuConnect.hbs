@@ -2,8 +2,23 @@
     <a href="https://devcenter.heroku.com/articles/heroku-connect-database-tables">heroku-connect</a>
 </p>
 
-<ul class="list-group">
-    {{#each records}}
-        <li class="list-group-item">{{ this.name }}</li>
-    {{/each}}
-</ul>   
+
+<div class="row">
+    <div class="col col-4">
+        <img src="img/heroku-connect.png" alt="">
+    </div>
+    <div class="col">
+        <ul class="list-group">
+            {{#each records}}
+                <li class="list-group-item">{{ this.name }}</li>
+            {{/each}}
+        </ul>
+        {{#if error}} 
+            <div class="col alert alert-danger">
+                {{ error }}
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+ 

@@ -3,6 +3,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+const bodyParser = require('body-parser');
+require('body-parser-xml')(bodyParser);
 const path = require('path');
 const expressHbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
@@ -24,10 +26,12 @@ app.engine(
   )
 
 app.set("view engine", "hbs");
+app.use(bodyParser.xml());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/loaderio-5bbb935b66b760e9322e450d144e3569.txt', express.static(path.join(__dirname, 'loaderio-5bbb935b66b760e9322e450d144e3569.txt')));
 
+app.use('/',              require('./routes/main'));
 app.use('/herokuconnect', require('./routes/herokuConnect'));
 app.use('/oauth',         require('./routes/oauth'));
 app.use('/sfrestapi',     require('./routes/sfRestApi'));

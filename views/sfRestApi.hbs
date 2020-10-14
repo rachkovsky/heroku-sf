@@ -1,11 +1,8 @@
 <div class="row mb-5">
     <div class="col">
-        {{#if connection }}
-            <p>You are authorized through Oauth2</p> 
-        {{else}}
-            <a class="btn btn-primary" href="/oauth">Oauth login</a>
-        {{/if}}
-        
+        <div>
+            <img src="img/heroku-sf-rest.png" alt="">
+        </div>        
     </div>
     <div class="col">
         {{#if connection }}
@@ -13,17 +10,14 @@
             <p>User id: {{ connection.userId }}</p>
             <p>Organization id: {{ connection.orgId }}</p>
             <p>Access Token: {{ connection.accessToken }}</p>
+        {{else}}
+            <a class="btn btn-primary mb-5" href="/oauth">Oauth login</a>
         {{/if}}
+        <button id="accounts" class="btn btn-secondary mb-5">Get Accounts via REST API</button>
+        <div id="result"></div>
     </div>
 </div>
 
-<div class="row mb-5">
-    <div class="col">
-        <button id="accounts" class="btn btn-secondary">Get Accounts</button>
-    </div>
-</div>
-
-<div class="row" id="result"></div>
 
 
 <script>
