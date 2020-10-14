@@ -37,6 +37,7 @@ app.use('/herokuconnect', require('./routes/herokuConnect'));
 app.use('/oauth',         require('./routes/oauth'));
 app.use('/sfrestapi',     require('./routes/sfRestApi'));
 app.use('/sfconnect',     require('./routes/sfConnect'));
+app.use('/case',          require('./routes/outboundMessage'))
 
 app.get('*', function (req, res) {
     res.status(404).render('404');
