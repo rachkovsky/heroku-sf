@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const todoitem = sequelize.define('Todoitem', {
+  const todoitem = sequelize.define('todoitem', {
     id: {
       type: Sequelize.INTEGER,
       field: "id",
@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     }
   });
-
-  todoitem.associate = models => {
-    Order.belongsTo(models.todouser);
-  };
 
   return todoitem;
 };
