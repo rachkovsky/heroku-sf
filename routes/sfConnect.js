@@ -4,9 +4,11 @@ const client = require('../db');
 router.get('/users', (req, res) => {
     client.query('SELECT * from todouser', (err, result) => {
         if (err) {
-            res.render('error');
+            res.render('error', {error: err});
+            return console.error(err);
         }
-        res.render('sfconnect', { users: result.rows ?  result.rows : [] });
+        console.log(result);
+        res.render('sfconnect', { users: result && result.rows ?  result.rows : [] });
     });
 });
 
