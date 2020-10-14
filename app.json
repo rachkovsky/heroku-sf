@@ -20,6 +20,11 @@
         {
           "plan": "heroku-postgresql:hobby-dev"
         }
-    ]
+    ],
+    "env": {
+        "PGSSLMODE": {
+            "value": "require"
+        }
+    }
       
 }
