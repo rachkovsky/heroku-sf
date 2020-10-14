@@ -1,0 +1,29 @@
+{
+    "name": "Node.js app",
+    "description": "Awesome node.js app",
+    "keywords": [],
+    "success_url": "/",
+    "scripts": {},
+    "env": {
+      "CLIENT_ID": {
+        "description": "Salesforce client_id",
+        "value": "5"
+      }
+    },
+    "formation": {
+      "web": {
+        "quantity": 1,
+        "size": "hobby"
+      },
+      "worker": {
+        "quantity": 1,
+        "size": "hobby"
+      }
+    },
+    "addons": ["heroku-postgresql:hobby-dev", "heroku-connect:demo-edition"],
+    "buildpacks": [
+      {
+        "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+      }
+    ]
+  }
