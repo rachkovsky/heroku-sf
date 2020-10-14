@@ -1,6 +1,5 @@
-let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
-let workQueue = new Queue('work', REDIS_URL);
-
+const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+const workQueue = new Queue('work', REDIS_URL);
 
 const router = require('express').Router();
 const outboundService = require('./../utils/outbound_service');
