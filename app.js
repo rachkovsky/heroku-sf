@@ -27,6 +27,7 @@ app.engine(
 
 app.set("view engine", "hbs");
 app.use(bodyParser.xml());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/loaderio-5bbb935b66b760e9322e450d144e3569.txt', express.static(path.join(__dirname, 'loaderio-5bbb935b66b760e9322e450d144e3569.txt')));
