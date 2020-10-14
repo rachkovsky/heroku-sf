@@ -1,10 +1,10 @@
 <div class="row mb-5">
-    <div class="col">
+    <div class="col col-5">
         <div>
             <img src="img/heroku-sf-rest.png" alt="">
         </div>        
     </div>
-    <div class="col">
+    <div class="col col-7">
         {{#if connection }}
             <p>Instance Url: {{connection.instanceUrl}}</p>
             <p>User id: {{ connection.userId }}</p>
@@ -37,13 +37,9 @@
         .then((res) => {
             console.log(res)
             res.response.forEach(function (record) {
-                item += '<div class="card col col-3 mb-3">' + 
-                            '<div class="card-body">'+
-                                '<h5 class="card-title">'+record.Name+'</h5>'+
-                                '<h6 class="card-subtitle mb-2 text-muted">'+record.Phone+'</h6>'+
-                                '<p class="card-text">'+ record.Description +'</p>'+
-                            '</div>' +    
-                        '</div>';
+                item += '<ul class="list-group list-group-flush">' + 
+                            '<li class="list-group-item">'+record.Name+'</li>'+
+                        '</ul>';
             });
             document.getElementById('result').innerHTML = item;
         })
