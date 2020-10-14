@@ -17,6 +17,7 @@ router.get('/users/:id', async (req, res) => {
 
         if (users.rows.length > 0) {
             const todos = await client.query('SELECT * from todolist WHERE user_id = $1', [users.rows[0].id]);
+            console.log('Postgress data: ', todos);
             res.render('sfconnect-user', { todos:  todos.rows })
         } else {
             res.render('sfconnect-user', { not_found: true })

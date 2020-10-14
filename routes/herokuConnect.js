@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
             console.log(err.stack);
             res.render('herokuConnect', {error: err.stack});
         } else {
-            console.log(result.rows);
+            console.log('Heroku connect postgres: ', result.rows);
             res.render('herokuConnect', { records: result.rows });
         }
     });

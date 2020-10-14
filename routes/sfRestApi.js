@@ -21,7 +21,7 @@ router.get('/accounts', (req, res) => {
             res.status(401).send({ error: error.stack});
             return console.error(error); 
         }
-        console.log(result.records);
+        console.log('REST API response: ', result.records);
         res.status(200).send({response: result.records});
       });
 })
