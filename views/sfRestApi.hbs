@@ -37,8 +37,7 @@
         .then((res) => {
             console.log(res)
             res.response.forEach(function (record) {
-                content += '<li class="list-group-item">'+record.Name+'</li>'+
-                        
+                content += '<li class="list-group-item">'+record.Name+'</li>'
             });
             document.getElementById('result').innerHTML = '<ul class="list-group list-group-flush">' + content + '</ul>';
         })
