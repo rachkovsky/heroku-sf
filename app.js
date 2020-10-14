@@ -30,7 +30,6 @@ app.use(bodyParser.xml());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/loaderio-5bbb935b66b760e9322e450d144e3569.txt', express.static(path.join(__dirname, 'loaderio-5bbb935b66b760e9322e450d144e3569.txt')));
 
 app.use('/',              require('./routes/main'));
 app.use('/herokuconnect', require('./routes/herokuConnect'));
@@ -42,7 +41,6 @@ app.use('/case',          require('./routes/outboundMessage'))
 app.get('*', function (req, res) {
     res.status(404).render('404');
 });
-
 
 app.listen(port, () => {
   console.log(`App listening at ${port}`)

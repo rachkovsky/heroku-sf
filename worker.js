@@ -1,5 +1,7 @@
 const throng = require('throng');
 const Queue = require("bull");
+const pgClient = require('./db');
+pgClient.connect();
 
 let REDIS_URL = process.env.REDIS_URL;
 let workers = process.env.WEB_CONCURRENCY || 2;
@@ -11,29 +13,22 @@ function sleep(ms) {
 }
 
 function start() {
-// Connect to the named work queue
-let workQueue = new Queue('work', REDIS_URL);
+    // Connect to the named work queue
+    let workQueue = new Queue('work', REDIS_URL);
 
-workQueue.process(maxJobsPerWorker, async (job) => {
-    // This is an example job that just slowly reports on progress
-    // while doing no work. Replace this with your own job logic.
-    let progress = 0;
+    workQueue.process(maxJobsPerWorker, function (job, done) {
 
-    // throw an error 5% of the time
-    if (Math.random() < 0.05) {
-        throw new Error("This job failed!")
-    }
-
-    while (progress < 100) {
-        await sleep(50);
-        progress += 1;
-        job.progress(progress)
-    }
-
-    // A job can return values that will be stored in Redis as JSON
-    // This return value is unused in this demo application.
-    return { value: "This will be stored" };
-});
+        console.log('------- ', job)
+        client.query('INSERT INTO cases (case_id, status) VALUES ($1, $2)', ['123123123', 'new'], (err, result) => {
+            if (err) {
+                console.log(err);
+                done();
+            }
+            done();
+            console.log(result);
+        });
+        return { value: "This will be stored" };
+    });
 }
 
 
