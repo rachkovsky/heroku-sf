@@ -10,3 +10,5 @@ router.post('/', (req, res) => {
         return res.send(outboundService.nack);
     }
 });
+
+module.exports = router;
