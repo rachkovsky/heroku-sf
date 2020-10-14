@@ -1,0 +1,6 @@
+{
+    "name": "Heroku: Node.js",
+    "keywords": ["node", "express", "heroku"],
+    "image": "heroku/nodejs",
+    "buildpacks": ["https://github.com/heroku/heroku-buildpack-nodejs"]
+  }

@@ -19,7 +19,7 @@ router.get('/callback', function (request, response) {
     conn.authorize(request.query.code, function (err, userInfo) {
         if (err) {
             response.render('error');
-            return;
+            return console.error(err);
         }
         console.log('USER INFO:', userInfo);
         console.log('CONNECTION: ', conn);
