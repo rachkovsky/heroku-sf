@@ -7,6 +7,7 @@ router.post('/', (req, res) => {
         console.log('outboundList: ', outboundList);
         return res.send(outboundService.ack);
     } catch (exception) {
+        console.log('outboundList exception: ', exception);
         return res.send(outboundService.nack);
     }
 });
